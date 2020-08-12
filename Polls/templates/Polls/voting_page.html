@@ -1,0 +1,33 @@
+{% extends 'Polls/base.html' %}
+{%block content%}
+<div class="row d-flex justify-content-center media-body-color media border p-3 ">
+    <div class="col-8">
+        <div class="row">
+            <h1 class="text-center">{{question.question}}</h1>
+        </div>
+        <div class="row">
+            <form method="post" action="{% url 'vote-function' question.id %}">
+                {% csrf_token %}
+                {% for option in question.option_set.all %}
+                      <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pollOption" id="{{forloop.counter}}" value="{{option.id}}" >
+                      <label class="form-check-label " for="{{forloop.counter}}">
+                          {{option.option_title}}
+                      </label>
+                    </div>
+                {% endfor %}
+            <button type="submit" class="btn btn-primary mt-2" style="width:80px;"> Vote </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="row ">
+  <div class="col-12 d-flex justify-content-center">
+        <a href="{% url 'home' %}" class="btn btn-dark ml-2 mt-2">Select other polls
+        <a href="{% url 'create-question' %}" class="btn btn-dark ml-2 mt-2">Create a new poll</a>
+
+
+      </div>
+</div>
+{%endblock%}

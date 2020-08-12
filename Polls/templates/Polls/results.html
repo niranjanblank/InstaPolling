@@ -1,0 +1,92 @@
+{% extends 'Polls/base.html' %}
+
+ {% block scripts %}
+<script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: [{% for option in question.option_set.all %}'{{option.option_title}}',{% endfor %}],
+        datasets: [{
+            label: '# of Votes',
+            data: [{% for option in question.option_set.all %}'{{option.votes}}',{% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+         xAxes: [{
+         gridLines: {
+                  display: false
+               },
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            yAxes: [{
+            gridLines: {
+                  display: false
+               },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+   });
+</script>
+
+ {% endblock scripts %}
+
+{%block content%}
+<div class="row d-flex justify-content-center">
+    <div class="col-8 media-body-color">
+        <div class="row d-flex justify-content-center mb-2">
+
+            <h1 class="text-center">{{question.question}}</h1>{% if  question.expired %}
+            <span class="badge badge-info" style="margin-top:20px;height:20px;">Poll has ended</span>
+            {% endif %}
+        </div>
+
+                {% for option in question.option_set.all %}
+                <div class="row list-group-item">
+                    {{option.option_title}} <span class="badge badge-success float-right">{{option.votes}} vote{{ option.votes | pluralize}}</span>
+                </div>
+                {% endfor %}
+
+    </div>
+
+</div>
+  <div class="row ">
+      <div class="col-12 d-flex justify-content-center">
+          <a href="{% url 'home' %}" class="btn btn-dark ml-2 mt-2">Select other polls</a>
+                {% if not question.expired %}
+                <a href="{% url 'vote-page' question.id %}" class="btn btn-primary ml-2 mt-2">Vote Again</a>
+                {% endif %}
+            <a href="{% url 'create-question' %}" class="btn btn-dark ml-2 mt-2">Create a new poll</a>
+      </div>
+</div>
+<div class="row d-flex justify-content-center mb-4 ">
+    <div class="col-sm-12 col-md-8 col-lg-8 ">
+         <canvas id="myChart" width="300" height="300"></canvas>
+      </div>
+</div>
+{%endblock%}

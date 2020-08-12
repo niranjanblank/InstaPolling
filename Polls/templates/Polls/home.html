@@ -1,0 +1,61 @@
+{% extends 'Polls/base.html' %}
+{% block content %}
+    <div class=" d-flex justify-content-center mb-2">
+                <a href="{% url 'create-question' %}" class="btn btn-dark">Create a new poll</a>
+    </div>
+
+    <div >
+        {% for question in questions %}
+        <div class="row media media-body-color border p-3 mb-2">
+            <div class="col-12">
+                <div class="row">
+                    <p style="font-size:2.2em;font-weight:500;"  >
+                    {{question.question}}
+                    {% if  question.expired %}
+                    <span class="badge badge-info" style="height:15px;font-size:12px;padding:2px">Poll has ended</span>
+                    {% endif %}
+                    </p>
+                </div>
+                <div class="row">
+                    <a href="{%url 'results' question.id %}" class="btn btn-primary mr-2">See Results</a>
+                    {% if not question.expired %}
+                    <a href="{%url 'vote-page' question.id %}" class="btn btn-success">Vote Now</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+
+<!-- Pagination -->
+    {% if questions.has_other_pages %}
+<div class="d-flex justify-content-center mb-4">
+        <nav aria-label="Page navigation example ">
+          <ul class="pagination">
+            <li class="page-item">
+
+              <a class="page-link" href="?page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+              {% for num in questions.paginator.page_range %}
+                {% if questions.number == num %}
+                    <li class="page-item active"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+                {% elif num > questions.number|add:'-2' and num < questions.number|add:'2' %}
+                    <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+                {% endif %}
+
+              {% endfor %}
+
+            <li class="page-item">
+              <a class="page-link" href="?page={{questions.paginator.num_pages}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock content%}
