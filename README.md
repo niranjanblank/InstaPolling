@@ -1,7 +1,7 @@
 # InstaPolling
 <h3 style="font-weight:bold;">InstaPolling is a simple polling website created using django framework.</h3>
 <ul>
-  <li>Polls can be created by anyone without the need of any kind of account.</li>
+  <li>Polls can be created by anyone without the need to create any kind of account.</li>
   <li>Any number of polls can be created by anyone, and anyone can vote on them.</li>
   <li>The results can be seen by anyone.</li>
   <li>The poll expires in an hour of its creation and only the results can be viewed after 1 hour.</li>
