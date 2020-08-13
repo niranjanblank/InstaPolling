@@ -1,5 +1,5 @@
 # InstaPolling
-<h3 style="font-weight:bold;">InstaPolling is a simple polling website created using django.</h3>
+<h3 style="font-weight:bold;">InstaPolling is a simple polling website created using django framework.</h3>
 <ul>
   <li>Hello World</li>
   <li>Polls can be created by anyone without the need of any kind of account.</li>
