@@ -6,7 +6,7 @@ from datetime import datetime
 class Question(models.Model):
     question = models.CharField(max_length=300)
     id = models.AutoField(primary_key=True)
-    date_published = models.DateTimeField(default=datetime.now)
+    date_published = models.DateTimeField(default=datetime.utcnow)
     expired = models.BooleanField(default=False)
 
     class Meta:

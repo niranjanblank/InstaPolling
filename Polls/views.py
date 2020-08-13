@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 def calculate_time_difference(questions):
     for i in questions:
-        current_time=datetime.now()
+        current_time=datetime.utcnow()
         if abs(current_time.hour-i.date_published.hour) == 1:
             if current_time.minute>i.date_published.minute:
                 i.expired=True
