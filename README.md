@@ -8,5 +8,5 @@
   <li>The charts of results are generated using chart.js</li>
   <li>All the views are created using only function based views.</li>
   <li>Pagination is added such that only 4 polls can be seen in a page.</li>
-  <li>The layout is created using css,html and bootstrap.</li>
+  <li>The layout is created using css,html5 and bootstrap.</li>
 </ul>
