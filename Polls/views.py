@@ -41,10 +41,10 @@ def create_question(request):
     return render(request,'Polls/question_form.html',{'form':question_form})
 
 def create_option(request,poll_id):
-    prev_url_data = str(request.META.get('HTTP_REFERER'))
-    same_url_data='http://127.0.0.1:8000/addPoll/'+str(poll_id)
-    if not ((prev_url_data == 'http://127.0.0.1:8000/addPoll/') or (prev_url_data == same_url_data)):
-        return HttpResponse(status=404)
+    # prev_url_data = str(request.META.get('HTTP_REFERER'))
+    # same_url_data='http://127.0.0.1:8000/addPoll/'+str(poll_id)
+    # if not ((prev_url_data == 'http://127.0.0.1:8000/addPoll/') or (prev_url_data == same_url_data)):
+    #     return HttpResponse(status=404)
     question= Question.objects.get(id=poll_id)
     # OptionFormset = inlineformset_factory(Question, Option, fields=('option_title',),can_delete=False,extra=1)
     OptionFormset = inlineformset_factory(Question, Option,form = OptionFormModel,can_delete=False,extra=1)
