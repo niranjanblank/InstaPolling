@@ -25,7 +25,7 @@ SECRET_KEY = '_p9ha-&+tpqq6rckys%y-jsw6bpe7(fg^*g*6b7$2x+(w86p8s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['instapolling.herokuapp.com']
+ALLOWED_HOSTS = ['instapolling.herokuapp.com','127.0.0.1']
 
 
 # Application definition
