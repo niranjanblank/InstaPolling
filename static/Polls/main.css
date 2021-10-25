@@ -1,0 +1,20 @@
+.form-container
+{   padding: 20px;
+
+    border-radius: 25px;
+    position: absolute;
+    width:100%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+input[type="radio"] {
+ -webkit-transform: scale(1.5);
+}
+
+.media-body-color
+{
+background-color: #ffffff;
+}
