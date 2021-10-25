@@ -1,0 +1,1 @@
+web: gunicorn InstaPollingV1.wsgi
